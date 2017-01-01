@@ -1,7 +1,7 @@
 from datetime import date, timedelta
-
 import requests
 
+NUM_OF_REPOS_TO_DISPLAY = 20
 
 def get_trending_repositories(top_size):
     week_ago = date.today() - timedelta(days=7)
@@ -16,7 +16,7 @@ def get_trending_repositories(top_size):
     return repos_data
 
 
-def get_open_issues_amount(repositories):
+def print_repositories_info(repositories):
     for num, repository in enumerate(repositories):
         print("""{num} {name}\nURL: {url}\nOpen Issues: {issues}\n""".format(
             num=num + 1,
@@ -26,5 +26,5 @@ def get_open_issues_amount(repositories):
         ))
 
 if __name__ == '__main__':
-    trending_repositories = get_trending_repositories(20)
-    get_open_issues_amount(trending_repositories)
+    trending_repositories = get_trending_repositories(NUM_OF_REPOS_TO_DISPLAY)
+    print_repositories_info(trending_repositories)
